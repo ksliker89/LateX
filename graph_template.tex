@@ -1,0 +1,99 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%   Begin Document  %%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt, letterpaper]{article}
+\usepackage[vmargin=1in, hmargin=1in]{geometry}
+\usepackage{tikz}
+\begin{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%   Heading    %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent{Kevin Sliker}
+
+\noindent{\today}
+
+\noindent{Course Number}
+
+\noindent{Topic of Discussion}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%   Title of Paper     %%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+	\textbf{Title of Paper}
+\end{center}
+\vspace{0.2in}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%   Main Content         %%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Lorem ipsum dolor sit amet, aliquet a varius est, tincidunt id ac etiam praesent rutrum. Amet sed, justo occaecati pretium sem nam aenean lorem, sit volutpat tellus eros accumsan, integer porta odio magna accumsan sed quam. Curabitur tincidunt nibh dignissim quam leo, sed tempus urna donec dolor, pede sed lacinia. Per eu ac, iaculis neque dolor, et massa rhoncus et lorem mi elit, porta lacus eros aut ligula ac, faucibus pharetra magna mauris et amet. Elit vulputate ullamcorper, etiam urna amet sodales. Ut lobortis, ut sapien at odio nunc vitae integer. Quam eget, urna orci phasellus a lacus, volutpat sed ultricies placerat scelerisque, molestie justo proin nullam sapien vel. Sed pulvinar qui tempor. Tellus nec sit quam ut.
+
+\newpage
+\begin{center}
+	\textbf{Graph Title}
+
+\begin{tikzpicture}[domain=0:5,scale=1,thick]
+	\usetikzlibrary{calc}                                %allows coordinate calculations.
+	\usetikzlibrary{decorations.pathreplacing}           %allows drawing curly braces.
+
+	% Define linear parameters for supply and demand
+	\def\dint{5.0}      %Y-intercept for DEMAND.
+	\def\dslp{-0.8}     %Slope for DEMAND.
+	\def\sint{1.0}      %Y-intercept for SUPPLY.
+	\def\sslp{0.8}      %Slope for SUPPLY.
+
+	\def\tax{1.5}       %Excise (per-unit) tax
+
+	% Define Supply and Demand Lines as equations of parameters defined above.
+	\def\demand{\x,{\dslp*\x+\dint}}
+	\def\supply{\x,{\sslp*\x+\sint}}
+	\def\demandtwo{\x,{\dslp*\x+\dint+\dsh}}
+	%\def\supplytwo{\x,{\sslp*\x+\sint+\ssh}}
+	\def\supplytwo{\x+\sint,{\sslp*\x+\sint}}
+
+
+	% Define coordinates.
+	\coordinate (ints) at ({(\sint-\dint)/(\dslp-\sslp)},{(\sint-\dint)/(\dslp-\sslp)*\sslp+\sint});
+	\coordinate (ep) at  (0,{(\sint-\dint)/(\dslp-\sslp)*\sslp+\sint});
+	\coordinate (eq) at  ({(\sint-\dint)/(\dslp-\sslp)},0);
+	\coordinate (dint) at (0,{\dint});
+	\coordinate (sint) at (0,{\sint});
+
+	\coordinate (teq) at  ({(\sint+\tax-\dint)/(\dslp-\sslp)},0); %quantity
+	\coordinate (tep) at  (0,{(\sint+\tax-\dint)/(\dslp-\sslp)*\sslp+\sint+\tax}); %price
+	\coordinate (tint) at  ({(\sint+\tax-\dint)/(\dslp-\sslp)},{(\sint+\tax-\dint)/(\dslp-\sslp)*\sslp+\sint+\tax}); %tax equilibrium
+
+	\coordinate (sep) at (0,{\sslp*(\sint+\tax-\dint)/(\dslp-\sslp)+\sint});
+	\coordinate (sen) at ({(\sint+\tax-\dint)/(\dslp-\sslp)},{\sslp*(\sint+\tax-\dint)/(\dslp-\sslp)+\sint});   
+
+	% DEMAND
+	\draw[thick,color=blue] plot (\demand) node[right] {$D_1$};
+
+	% SUPPLY
+	\draw[thick,color=purple] plot (\supply) node[right] {$S_2$};
+	\draw[thick,color=purple] plot (\supplytwo) node[right] {$S_1$};
+
+	% Draw axes, and dotted equilibrium lines.
+	\draw[->] (0,0) -- (6.2,0) node[right] {\# of employees};
+	\draw[->] (0,0) -- (0,6.2) node[above] {\$ in wages};
+	%	\draw[decorate,decoration={brace},thick]  ($(sep)+(-0.8,0)$) -- ($(tep)+(-0.8,0)$) node[midway,below=-8pt,xshift=-18pt] {tax};
+
+	%	\draw[dashed] (tint) -- (teq) node[below] {$Q_T$};                  
+	%	\draw[dashed] (tint) -- (tep) node[left] {$P_d$};                       
+	%	\draw[dashed] (sen) -- (sep) node[left] {$P_s$};                        
+
+\end{tikzpicture}
+\end{center}
+\vspace{0.2in}
+Lorem ipsum dolor sit amet, aliquet a varius est, tincidunt id ac etiam praesent rutrum. Amet sed, justo occaecati pretium sem nam aenean lorem, sit volutpat tellus eros accumsan, integer porta odio magna accumsan sed quam. Curabitur tincidunt nibh dignissim quam leo, sed tempus urna donec dolor, pede sed lacinia. Per eu ac, iaculis neque dolor, et massa rhoncus et lorem mi elit, porta lacus eros aut ligula ac, faucibus pharetra magna mauris et amet. Elit vulputate ullamcorper, etiam urna amet sodales. Ut lobortis, ut sapien at odio nunc vitae integer. Quam eget, urna orci phasellus a lacus, volutpat sed ultricies placerat scelerisque, molestie justo proin nullam sapien vel. Sed pulvinar qui tempor. Tellus nec sit quam ut.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%     End of Document    %%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
